@@ -1,0 +1,9 @@
+import numpy as np
+import pandas as pd
+import pandas.io.data as web
+sp500=web.DataReader('^GSPC',data_source='yahoo',
+                    start='1/1/2000',end='4/14/2014')
+sp500.info()
+sp500['Close'].plot(grid=True,figsize=(8,5))
+sp500['42d']=np.round(pd.rolling_mean(sp500['Close'],window=42),2)
+sp500['252d']=np.round(pd.rolling_mean(sp500['Close'],window=252),2)
